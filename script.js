@@ -1,7 +1,14 @@
-const calculatorDisplay = document.querySelector('.calculator-Display');
+const secondNumberDisplay = document.querySelector('.secondNumber');
+const firstNumberDisplay = document.querySelector('.firstNumber');
 const numberButton = document.querySelectorAll('[data-number]');
 const operatorButton = document.querySelectorAll('[data-operation]');
+const allClearButton = document.querySelector('[data-clear');
+const equalButton = document.querySelector('[data-equals]')
 
+let firstValue = 0;
+let secondValue = 0;
+let chooseOperator = "";
+let result = 0;
 
 function add(a, b) {
   return a + b;
@@ -21,7 +28,7 @@ function divide(a, b) {
 
 function operate(a, b, operator) {
   if (operator == "+") {
-    return add(a, b);
+    return add(+a, +b);
   } 
   else if (operator == "-") {
     return subtract(a, b);
@@ -32,24 +39,47 @@ function operate(a, b, operator) {
   else if (operator == "÷") {
     return divide(a, b);
   }
+  else {
+    console.log("ERROR");
+    firstNumberDisplay.textContent = "ERROR";
+  }
 }
 
 
-function clear () {
-  calculatorDisplay = '';
+function clear() {
+  firstNumberDisplay.textContent = "";
+  secondNumberDisplay.textContent = "";
+  firstValue = 0;
+  secondValue = 0;
+  result = 0;
+  chooseOperator = "";
 }
 
 numberButton.forEach(button => {
   button.addEventListener('click', function() {
-    calculatorDisplay.append(button.innerText)
+    firstNumberDisplay.append(button.innerText)
   })
 })
 
 operatorButton.forEach(button => {
   button.addEventListener('click', function() {
-    calculatorDisplay.append(button.innerText);
+    secondNumberDisplay.textContent = firstNumberDisplay.textContent;
+    firstNumberDisplay.textContent = "";
+    chooseOperator = button.innerText;
   })
 })
+
+equalButton.addEventListener('click', () => {
+  secondValue = secondNumberDisplay.textContent;
+  firstValue = firstNumberDisplay.textContent;
+  let results = operate(secondValue, firstValue, chooseOperator);
+  secondNumberDisplay.textContent = '';
+  firstNumberDisplay.textContent = results;
+});
+
+
+
+allClearButton.addEventListener('click', clear);
 
 
 
