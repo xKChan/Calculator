@@ -6,7 +6,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: lightblue;
+  background-image: linear-gradient(to right, #8E66BA, #D5D5D5);
 }
 
 .calculatorGrid {
@@ -15,8 +15,7 @@ body {
   align-content: center;
   justify-content: center;
   grid-template-columns: repeat(4,100px);
-  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
-  
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);  
 }
 
 .span-four {
@@ -45,4 +44,25 @@ body {
 .secondNumber {
   font-size: 35px;
   color: lightgray;
+}
+
+.calculatorGrid button {
+  cursor: pointer;
+  border-style: none;
+}
+
+.calculatorGrid button:hover {
+  background-color: lightgray;
+}
+
+[data-operation] {
+  background-color: lightgreen
+}
+
+[data-equals] {
+  background-color: red;
+}
+
+button [data-operation]:active {
+  background-color: darkgreen;
 }
