@@ -62,7 +62,3 @@ body {
 [data-equals] {
   background-color: red;
 }
-
-button [data-operation]:active {
-  background-color: darkgreen;
-}

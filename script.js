@@ -4,11 +4,13 @@ const numberButton = document.querySelectorAll('[data-number]');
 const operatorButton = document.querySelectorAll('[data-operation]');
 const allClearButton = document.querySelector('[data-clear');
 const equalButton = document.querySelector('[data-equals]')
+const decimalButton = document.querySelector('[data-decimal]')
 
 let firstValue = 0;
 let secondValue = 0;
 let chooseOperator = "";
 let result = 0;
+const decimal = Number(".");
 
 function add(a, b) {
   return a + b;
@@ -57,7 +59,7 @@ function clear() {
 
 numberButton.forEach(button => {
   button.addEventListener('click', function() {
-    firstNumberDisplay.append(button.innerText)
+    firstNumberDisplay.append(button.innerText);
   })
 })
 
@@ -77,6 +79,15 @@ equalButton.addEventListener('click', () => {
   firstNumberDisplay.textContent = results;
 });
 
+decimalButton.addEventListener('click', function() {
+  if (firstNumberDisplay.textContent.includes('.')) {
+    return;
+  }
+  else {
+    stringToNumber = firstNumberDisplay.textContent + "."
+    firstNumberDisplay.textContent = stringToNumber;
+  }
+})
 
 
 allClearButton.addEventListener('click', clear);
